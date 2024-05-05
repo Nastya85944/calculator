@@ -27,8 +27,8 @@ public class MultiplyOperationTets {
 
     @Test
     public void checkAndSaveMultiplyOperation_newRecord(){
-        long parameter1 = 5;
-        long parameter2 = 5;
+        int parameter1 = 2;
+        int parameter2 = 2;
 
         when(calculatorRepository.findExistingData(OperationsEnum.MULTIPLY.name(), parameter1, parameter2))
                 .thenReturn(null);
@@ -44,8 +44,8 @@ public class MultiplyOperationTets {
 
     @Test
     public void checkAndSaveMultiplyOperation_existingRecord(){
-        long parameter1 = 5;
-        long parameter2 = 5;
+        int parameter1 = 5;
+        int parameter2 = 5;
 
         Calculator existingRecord = new Calculator();
         when(calculatorRepository.findExistingData(OperationsEnum.MULTIPLY.name(), parameter1, parameter2))

@@ -25,8 +25,8 @@ public class AddOperationTest {
 
     @Test
     public void testCheckAndSaveAddOperation_newRecord(){
-        long parameter1 = 1L;
-        long parameter2 = 2L;
+        int parameter1 = 1;
+        int parameter2 = 2;
 
         when(calculatorRepository.findExistingData(OperationsEnum.ADD.name(), parameter1, parameter2))
                 .thenReturn(null);
@@ -42,8 +42,8 @@ public class AddOperationTest {
 
     @Test
     public void testCheckAndSaveAddOperation_existingRecord() throws ResourceNotFoundException {
-        long parameter1 = 1L;
-        long parameter2 = 2L;
+        int parameter1 = 1;
+        int parameter2 = 2;
 
         Calculator existingRecord = new Calculator();
         when(calculatorRepository.findExistingData(OperationsEnum.ADD.name(), parameter1, parameter2))

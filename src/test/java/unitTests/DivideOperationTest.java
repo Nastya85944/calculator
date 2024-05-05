@@ -25,8 +25,8 @@ public class DivideOperationTest {
 
     @Test
     public void checkAndSaveDivideOperation_newRecord() throws ArithmeticException {
-        long parameter1 = 10L;
-        long parameter2 = 2L;
+        int parameter1 = 10;
+        int parameter2 = 2;
 
         when(calculatorRepository.findExistingData(OperationsEnum.DIVIDE.name(), parameter1, parameter2))
                 .thenReturn(null);
@@ -42,8 +42,8 @@ public class DivideOperationTest {
 
     @Test
     public void checkAndSaveDivideOperation_existingRecord() throws ArithmeticException {
-        long parameter1 = 1L;
-        long parameter2 = 2L;
+        int parameter1 = 1;
+        int parameter2 = 2;
 
         Calculator existingRecord = new Calculator();
         when(calculatorRepository.findExistingData(OperationsEnum.DIVIDE.name(), parameter1, parameter2))
@@ -57,8 +57,8 @@ public class DivideOperationTest {
 
     @Test
     public void checkAndSaveDivideOperation_throwArithmeticException() throws ArithmeticException{
-        long parameter1 = 1L;
-        long parameter2 = 0L;
+        int parameter1 = 1;
+        int parameter2 = 0;
         when(calculatorRepository.findExistingData(OperationsEnum.DIVIDE.name(), parameter1, parameter2))
                 .thenReturn(null);
 

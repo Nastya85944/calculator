@@ -4,7 +4,7 @@ import com.example.demo.entities.Calculator;
 
 public class UtilityCalculator {
 
-    public static Calculator createCalculator(long parameter1, long parameter2, String operation) {
+    public static Calculator createCalculator(int parameter1, int parameter2, String operation) throws ArithmeticException {
         Calculator calculator = new Calculator();
         calculator.setParameter1(parameter1);
         calculator.setParameter2(parameter2);

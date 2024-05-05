@@ -25,7 +25,7 @@ public class OperationsServiceImpl implements OperationsService {
 
     @Cacheable("operations")
     @Override
-    public Calculator checkAndSaveAddOperation(long parameter1, long parameter2) {
+    public Calculator checkAndSaveAddOperation(int parameter1, int parameter2) {
         Calculator existingRecord = findExistingData(OperationsEnum.ADD.name(), parameter1, parameter2);
         if (existingRecord != null) {
             return existingRecord;
@@ -36,7 +36,7 @@ public class OperationsServiceImpl implements OperationsService {
 
     @Cacheable("operations")
     @Override
-    public Calculator checkAndSaveSubtractOperation(long parameter1, long parameter2){
+    public Calculator checkAndSaveSubtractOperation(int parameter1, int parameter2){
         Calculator existingRecord = findExistingData(OperationsEnum.SUBTRACT.name(), parameter1, parameter2);
         if (existingRecord != null) {
             return existingRecord;
@@ -47,7 +47,7 @@ public class OperationsServiceImpl implements OperationsService {
 
     @Cacheable("operations")
     @Override
-    public Calculator checkAndSaveMultiplyOperation(long parameter1, long parameter2) {
+    public Calculator checkAndSaveMultiplyOperation(int parameter1, int parameter2) {
         Calculator existingRecord = findExistingData(OperationsEnum.MULTIPLY.name(), parameter1, parameter2);
         if (existingRecord != null) {
             return existingRecord;
@@ -58,7 +58,7 @@ public class OperationsServiceImpl implements OperationsService {
 
     @Cacheable("operations")
     @Override
-    public Calculator checkAndSaveDivideOperation(long parameter1, long parameter2) throws ArithmeticException{
+    public Calculator checkAndSaveDivideOperation(int parameter1, int parameter2) throws ArithmeticException{
         Calculator existingRecord = findExistingData(OperationsEnum.DIVIDE.name(), parameter1, parameter2);
         if (existingRecord != null) {
             return existingRecord;
@@ -74,7 +74,7 @@ public class OperationsServiceImpl implements OperationsService {
     }
 
     @Override
-    public void deleteRecord(String operation, long parameter1, long parameter2) throws ResourceNotFoundException {
+    public void deleteRecord(String operation, int parameter1, int parameter2) throws ResourceNotFoundException {
         Calculator existingRecord = Optional.of(findExistingData(operation, parameter1, parameter2))
                 .orElseThrow(() -> new ArithmeticException("The record doesn't exist for opertion " + operation));
         calculatorRepository.delete(existingRecord);
@@ -87,7 +87,7 @@ public class OperationsServiceImpl implements OperationsService {
 
     @Cacheable("operations")
     @Override
-    public Calculator findExistingData(String operation, long parameter1, long parameter2){
+    public Calculator findExistingData(String operation, int parameter1, int parameter2){
         return calculatorRepository.findExistingData(operation, parameter1, parameter2);
     }
 }

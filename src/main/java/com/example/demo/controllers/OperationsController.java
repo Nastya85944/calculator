@@ -23,23 +23,23 @@ public class OperationsController {
     }
 
     @PostMapping("/add")
-    public Calculator add(@Valid @RequestParam("param1") long parameter1, @Valid @RequestParam("param2") long parameter2){
+    public Calculator add(@Valid @RequestParam("param1") int parameter1, @Valid @RequestParam("param2") int parameter2){
         return operationsService.checkAndSaveAddOperation(parameter1, parameter2);
     }
 
     @PostMapping("/subtract")
-    public Calculator subtract(@Valid @RequestParam("param1") long parameter1, @Valid @RequestParam("param2") long parameter2) {
+    public Calculator subtract(@Valid @RequestParam("param1") int parameter1, @Valid @RequestParam("param2") int parameter2) {
         return operationsService.checkAndSaveSubtractOperation(parameter1, parameter2);
     }
 
     @PostMapping("/multiply")
-    public Calculator multiply(@Valid @RequestParam("param1") long parameter1, @Valid @RequestParam("param2") long parameter2){
+    public Calculator multiply(@Valid @RequestParam("param1") int parameter1, @Valid @RequestParam("param2") int parameter2){
         return operationsService.checkAndSaveMultiplyOperation(parameter1, parameter2);
     }
 
     @PostMapping("/divide")
-    public Calculator divide(@Valid @RequestParam("param1") long parameter1,
-                             @Valid @RequestParam("param2") long parameter2) throws ArithmeticException, ResourceNotFoundException {
+    public Calculator divide(@Valid @RequestParam("param1") int parameter1,
+                             @Valid @RequestParam("param2") int parameter2) throws ArithmeticException, ResourceNotFoundException {
         return operationsService.checkAndSaveDivideOperation(parameter1, parameter2);
     }
 
@@ -59,14 +59,14 @@ public class OperationsController {
     }
 
     @GetMapping("/record")
-    public Calculator findRecord(@RequestParam String operation, @RequestParam("param1") long parameter1,
-                                       @RequestParam("param2") long parameter2) throws ResourceNotFoundException {
+    public Calculator findRecord(@RequestParam String operation, @RequestParam("param1") int parameter1,
+                                       @RequestParam("param2") int parameter2) throws ResourceNotFoundException {
         return operationsService.findExistingData(operation.toUpperCase(), parameter1, parameter2);
     }
 
     @DeleteMapping
-    public void deleteRecord(@RequestParam String operation, @RequestParam("param1") long parameter1,
-                           @RequestParam("param2") long parameter2) throws ResourceNotFoundException {
+    public void deleteRecord(@RequestParam String operation, @RequestParam("param1") int parameter1,
+                           @RequestParam("param2") int parameter2) throws ResourceNotFoundException {
         operationsService.deleteRecord(operation, parameter1, parameter2);
     }
 }

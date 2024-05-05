@@ -20,14 +20,14 @@ public class Calculator {
 
     @NotNull
     @Column(name = "parameter1", nullable= false)
-    private long parameter1;
+    private int parameter1;
 
     @NotNull
     @Column(name = "parameter2", nullable= false)
-    private long parameter2;
+    private int parameter2;
 
     @Column(name = "result", nullable= false)
-    private long result;
+    private double result;
 
     @NotNull
     @Column(name = "operation", nullable= false)

@@ -31,8 +31,8 @@ public class CommonOperationsTest {
 
     @Test
     public void deleteRecord_existingRecord() throws ResourceNotFoundException {
-        long parameter1 = 1L;
-        long parameter2 = 2L;
+        int parameter1 = 1;
+        int parameter2 = 2;
         Calculator existingRecord = new Calculator();
 
         when(calculatorRepository.findExistingData(OperationsEnum.ADD.name(), parameter1, parameter2))

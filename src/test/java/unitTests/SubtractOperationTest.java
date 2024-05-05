@@ -24,8 +24,8 @@ public class SubtractOperationTest {
 
     @Test
     public void testCheckAndSaveSubtractOperation_newRecord() {
-        long parameter1 = 10L;
-        long parameter2 = 2L;
+        int parameter1 = 10;
+        int parameter2 = 2;
 
         when(calculatorRepository.findExistingData(OperationsEnum.SUBTRACT.name(), parameter1, parameter2))
                 .thenReturn(null);
@@ -41,8 +41,8 @@ public class SubtractOperationTest {
 
     @Test
     public void checkAndSaveSubtractOperation_existingRecord(){
-        long parameter1 = 10L;
-        long parameter2 = 2L;
+        int parameter1 = 10;
+        int parameter2 = 2;
 
         Calculator existingRecord = new Calculator();
         when(calculatorRepository.findExistingData(OperationsEnum.SUBTRACT.name(), parameter1, parameter2))
