@@ -12,19 +12,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+
 import java.util.Optional;
 
 @Service
 public class OperationsServiceImpl implements OperationsService {
 
     private  CalculatorRepository calculatorRepository;
-    private List<CalculatorCreation> calculatorCreations;
 
     @Autowired
-    public OperationsServiceImpl(CalculatorRepository calculatorRepository, List<CalculatorCreation>  calculatorCreations) {
+    public OperationsServiceImpl(CalculatorRepository calculatorRepository) {
         this.calculatorRepository = calculatorRepository;
-        this.calculatorCreations = calculatorCreations;
     }
 
     @Cacheable("operations")
@@ -101,31 +99,26 @@ public class OperationsServiceImpl implements OperationsService {
     private Optional<Calculator> createCalculator(int parameter1, int parameter2, String operation) throws ArithmeticException {
         switch (operation) {
             case "ADD" -> {
-                CalculatorCreation calculatorCreation = calculatorCreations.stream()
-                        .filter(impl -> impl instanceof CalculatorForAddingOperation)
-                        .findFirst()
-                        .get();
+                CalculatorCreation calculatorCreation = new CalculatorForAddingOperation();
                 return calculatorCreation.processCalculator(parameter1, parameter2, operation);
             }
             case "SUBTRACT" -> {
-                CalculatorCreation calculatorCreation = calculatorCreations.stream()
-                        .filter(impl -> impl instanceof CalculatorForSubtractionOperation)
-                        .findFirst().get();
+                CalculatorCreation calculatorCreation = new CalculatorForSubtractionOperation();
                 return calculatorCreation.processCalculator(parameter1, parameter2, operation);
             }
             case "MULTIPLY" -> {
-                CalculatorCreation calculatorCreation = calculatorCreations.stream()
-                        .filter(impl -> impl instanceof CalculatorForMultiplyingOperation)
-                        .findFirst().get();
+                CalculatorCreation calculatorCreation = new CalculatorForMultiplyingOperation();
                 return calculatorCreation.processCalculator(parameter1, parameter2, operation);
             }
             case "DIVIDE" -> {
-                CalculatorCreation calculatorCreation = calculatorCreations.stream()
-                        .filter(impl -> impl instanceof CalculatorForDividingOperation)
-                        .findFirst().get();
+                CalculatorCreation calculatorCreation = new CalculatorForDividingOperation();
                 return calculatorCreation.processCalculator(parameter1, parameter2, operation);
             }
         }
         return Optional.empty();
+    }
+
+    public Optional<Calculator>callCreateCalculator(int parameter1, int parameter2, String operation){
+       return  createCalculator(parameter1, parameter2, operation);
     }
 }
