@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 
 import com.example.demo.entities.Calculator;
+import com.example.demo.exceptions.OperationNotFoundException;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.services.OperationsService;
 import jakarta.validation.Valid;
@@ -23,23 +24,23 @@ public class OperationsController {
     }
 
     @PostMapping("/add")
-    public Calculator add(@Valid @RequestParam("param1") int parameter1, @Valid @RequestParam("param2") int parameter2){
+    public Calculator add(@Valid @RequestParam("param1") int parameter1, @Valid @RequestParam("param2") int parameter2) throws OperationNotFoundException {
         return operationsService.checkAndSaveAddOperation(parameter1, parameter2);
     }
 
     @PostMapping("/subtract")
-    public Calculator subtract(@Valid @RequestParam("param1") int parameter1, @Valid @RequestParam("param2") int parameter2) {
+    public Calculator subtract(@Valid @RequestParam("param1") int parameter1, @Valid @RequestParam("param2") int parameter2) throws OperationNotFoundException{
         return operationsService.checkAndSaveSubtractOperation(parameter1, parameter2);
     }
 
     @PostMapping("/multiply")
-    public Calculator multiply(@Valid @RequestParam("param1") int parameter1, @Valid @RequestParam("param2") int parameter2){
+    public Calculator multiply(@Valid @RequestParam("param1") int parameter1, @Valid @RequestParam("param2") int parameter2) throws OperationNotFoundException{
         return operationsService.checkAndSaveMultiplyOperation(parameter1, parameter2);
     }
 
     @PostMapping("/divide")
     public Calculator divide(@Valid @RequestParam("param1") int parameter1,
-                             @Valid @RequestParam("param2") int parameter2) throws ArithmeticException, ResourceNotFoundException {
+                             @Valid @RequestParam("param2") int parameter2) throws ArithmeticException, ResourceNotFoundException, OperationNotFoundException {
         return operationsService.checkAndSaveDivideOperation(parameter1, parameter2);
     }
 

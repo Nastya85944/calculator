@@ -37,6 +37,17 @@ public class GlobalHandlerException extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(OperationNotFoundException.class)
+    public ResponseEntity<ErrorDetails> operationNotFoundException(OperationNotFoundException ex) {
+        ErrorDetails errorDetails = new ErrorDetails();
+        errorDetails.setTitle("Operation is not correct");
+        errorDetails.setStatus(HttpStatus.BAD_REQUEST.value());
+        errorDetails.setDetails(ex.getMessage());
+        errorDetails.setTimeStamp(new Date().getTime());
+        errorDetails.setDeveloperMessage(ex.getClass().getName());
+        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         return super.handleMethodArgumentNotValid(ex, headers, status, request);
     }
